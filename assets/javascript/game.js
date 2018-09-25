@@ -22,7 +22,6 @@ for (i=0; i < picOptions.length; i++) {
 function reset () {
     targetNumber = Math.floor(Math.random() * (120-19+1)) + 19;
     current = 0;
-    
     $("#current").html(current);
     $("#target").html(targetNumber);
 }
