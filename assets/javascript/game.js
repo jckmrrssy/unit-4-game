@@ -19,12 +19,7 @@ for (i=0; i < picOptions.length; i++) {
     $("#notTaken").append(imageCrystal);
 }
 
-function reset () {
-    targetNumber = Math.floor(Math.random() * (120-19+1)) + 19;
-    current = 0;
-    $("#current").html(current);
-    $("#target").html(targetNumber);
-}
+
 // Declaring win/loss variables
 var wins = 0;
 var losses = 0;
@@ -44,12 +39,45 @@ $(".crystal-image").on("click", function() {
     else if (current > targetNumber) {
         losses = losses + 1;
         $("#losses").text(losses);
-        reset ();
+        reset (); 
     }
 
 
 })
 
+function reset () {
+    targetNumber = Math.floor(Math.random() * (120-19+1)) + 19;
+    current = 0;
+    $("#current").html(current);
+    $("#target").html(targetNumber);
+    $("#notTaken").empty();
+    for (i=0; i < picOptions.length; i++) {
+        imageCrystal = $('<img>');
+        imageCrystal.addClass("crystal-image");
+        imageCrystal.attr("src", picOptions[i]);
+        imageCrystal.attr('data-crystalvalue', Math.floor(Math.random()* (12-1+1))+1);
+        $("#notTaken").append(imageCrystal);
+    };
+    $(".crystal-image").on("click", function() {
+        var crystalValue = ($(this).attr("data-crystalvalue"));
+        crystalValue = parseInt(crystalValue);
+        current += crystalValue;
+        $("#current").html(current);
+        // Win - lose conditions
+        if (current === targetNumber) {
+            wins = wins + 1;
+            $("#wins").text(wins);
+            reset ();
+        }
+        else if (current > targetNumber) {
+            losses = losses + 1;
+            $("#losses").text(losses);
+            reset (); 
+        }
+    
+    
+    })
+}
 
 });
 
