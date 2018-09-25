@@ -44,7 +44,7 @@ $(".crystal-image").on("click", function() {
 
 
 })
-
+// Function reset - new random target, zeroes current, randomizes image values by replacing and appending new images
 function reset () {
     targetNumber = Math.floor(Math.random() * (120-19+1)) + 19;
     current = 0;
